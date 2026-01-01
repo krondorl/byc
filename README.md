@@ -1,4 +1,4 @@
-# Bond Yield Calculations (byc)
+# Bond Yield Calculator (byc)
 
 This CLI calculates **Current Yield** and **Simple Yield** for plain-vanilla bonds.
 
