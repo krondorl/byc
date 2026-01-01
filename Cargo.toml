@@ -1,0 +1,24 @@
+[package]
+name = "byc"
+version = "0.1.0"
+edition = "2024"
+authors = ["Adam Burucs"]
+description = "Bond Yield Calculator"
+license = "Source Available"
+repository = "https://github.com/krondorl/byc"
+homepage = "https://github.com/krondorl/byc"
+readme = "README.md"
+keywords = ["bond", "yield", "calculator", "finance"]
+categories = ["command-line-utilities"]
+
+[dependencies]
+anyhow = "1.0.100"
+clap = { version = "4.5.53", features = ["derive"] }
+serde = { version = "1.0.228", features = ["derive"] }
+
+[profile.release]
+opt-level = "z"     # Optimize for size
+lto = true          # Enable link-time optimization
+codegen-units = 1   # Reduce parallel code generation units for better optimization
+panic = "abort"     # Abort on panic instead of unwinding
+strip = true        # Strip symbols from binary
