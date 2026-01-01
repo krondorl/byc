@@ -6,5 +6,5 @@ pub struct Bond {
     pub ticker: String,
     pub coupon_rate: f64,
     pub maturity_date: String,
-    clean_price: f64,
+    pub clean_price: f64,
 }
