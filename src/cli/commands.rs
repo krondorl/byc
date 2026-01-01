@@ -1,3 +1,5 @@
+// Copyright 2026 Adam Burucs. Licensed under custom Source Available License
+
 use crate::domain::bond::Bond;
 
 /// Executes the `current-yield` command

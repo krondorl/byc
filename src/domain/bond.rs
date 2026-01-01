@@ -1,3 +1,5 @@
+// Copyright 2026 Adam Burucs. Licensed under custom Source Available License
+
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
