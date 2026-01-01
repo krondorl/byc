@@ -35,13 +35,13 @@ This CLI calculates **Current Yield** and **Simple Yield** for plain-vanilla bon
 Annual coupon payment:
 
 $$
-C = coupon\_rate \times FaceValue
+C = {coupon\_rate} \times FaceValue
 $$
 
 Since \( FaceValue = 100 \):
 
 $$
-C = coupon\_rate \times 100
+C = {coupon\_rate} \times 100
 $$
 
 ---
