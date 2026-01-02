@@ -2,16 +2,8 @@
 
 use byc::time::maturity::years_to_maturity_at;
 
-const EPS: f64 = 1e-3; // looser tolerance due to time passing
-
-#[test]
-fn maturity_in_one_year() {
-    let now = chrono::Utc::now();
-    let maturity = now + chrono::Duration::days(365);
-
-    let result = years_to_maturity_at(&maturity.to_rfc3339(), now).unwrap();
-
-    assert!((result - 1.0).abs() < 1e-9);
+fn days_from_years(years: f64) -> i64 {
+    (years * 365.25 * 24.0 * 60.0 * 60.0 * 1000.0) as i64
 }
 
 #[test]
@@ -25,11 +17,21 @@ fn maturity_in_the_past() {
 }
 
 #[test]
+fn maturity_in_one_year() {
+    let now = chrono::Utc::now();
+    let maturity = now + chrono::Duration::milliseconds(days_from_years(1.0));
+
+    let result = years_to_maturity_at(&maturity.to_rfc3339(), now).unwrap();
+
+    assert!((result - 1.0).abs() < 1e-9);
+}
+
+#[test]
 fn maturity_far_future() {
     let now = chrono::Utc::now();
-    let ten_years_later = now + chrono::Duration::days(365 * 10);
+    let maturity = now + chrono::Duration::milliseconds(days_from_years(10.0));
 
-    let result = years_to_maturity_at(&ten_years_later.to_rfc3339(), now).unwrap();
+    let result = years_to_maturity_at(&maturity.to_rfc3339(), now).unwrap();
 
     assert!((result - 10.0).abs() < 1e-9);
 }
