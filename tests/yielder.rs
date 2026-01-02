@@ -1,3 +1,5 @@
+// Copyright 2026 Adam Burucs. Licensed under custom Source Available License
+
 use byc::domain::bond::Bond;
 use byc::math::yielder::{annual_coupon, current_yield, simple_yield};
 
