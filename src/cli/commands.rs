@@ -6,7 +6,7 @@ use crate::{
     time::maturity::years_to_maturity_at,
 };
 use anyhow::Context;
-use std::fs::File;
+use std::fs::{File, OpenOptions};
 
 /// Displays the application's name, version, and description to the standard output.
 ///
@@ -68,8 +68,13 @@ pub fn calculate_enriched_bonds(bonds: &[Bond]) -> anyhow::Result<Vec<EnrichedBo
 
 /// Writes enriched bonds to a CSV file.
 /// Enriched bonds contain calculated yield information.
+/// This function refuses to overwrite existing files.
 pub fn write_enriched_bonds(path: &str, data: &[EnrichedBond]) -> anyhow::Result<()> {
-    let file = File::create(path).with_context(|| format!("Failed to create file at {}", path))?;
+    let file = OpenOptions::new()
+        .write(true)
+        .create_new(true) // refuse overwrite
+        .open(path)
+        .with_context(|| format!("Refusing to overwrite existing file at {}", path))?;
 
     let mut writer = csv::Writer::from_writer(file);
 
@@ -79,6 +84,6 @@ pub fn write_enriched_bonds(path: &str, data: &[EnrichedBond]) -> anyhow::Result
             .context("Failed to serialize record")?;
     }
 
-    writer.flush()?;
+    writer.flush().context("Failed to flush CSV writer")?;
     Ok(())
 }
