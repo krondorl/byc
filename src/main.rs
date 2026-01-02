@@ -1,8 +1,8 @@
 // Copyright 2026 Adam Burucs. Licensed under custom Source Available License
 
 use anyhow::{Context, Result};
+use byc::cli::commands::{calculate_enriched_bonds, print_info, read_bonds, write_enriched_bonds};
 use clap::{CommandFactory, Parser};
-use serde::{Deserialize, Serialize};
 
 const VERSION_INFO: &str = concat!(
     env!("CARGO_PKG_VERSION"),
@@ -25,11 +25,19 @@ struct Cli {
     output_file: std::path::PathBuf,
 }
 
-fn main() {
-    println!("byc");
+fn main() -> Result<()> {
+    let args = Cli::parse();
+    let cmd = Cli::command();
 
-    // parse CLI args
-    // load inputs
-    // call pure math
-    // print results
+    print_info(cmd);
+
+    println!("Reading bonds from: {:?}", args.input_file);
+    let bonds = read_bonds(args.input_file.to_str().unwrap())?;
+
+    let enriched_bonds = calculate_enriched_bonds(&bonds)?;
+
+    println!("Saving results to: {:?}", args.output_file);
+    write_enriched_bonds(args.output_file.to_str().unwrap(), &enriched_bonds)?;
+
+    Ok(())
 }
