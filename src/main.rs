@@ -1,6 +1,6 @@
 // Copyright 2026 Adam Burucs. Licensed under custom Source Available License
 
-use anyhow::{Context, Result};
+use anyhow::Result;
 use byc::cli::commands::{calculate_enriched_bonds, print_info, read_bonds, write_enriched_bonds};
 use clap::{CommandFactory, Parser};
 
