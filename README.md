@@ -1,113 +1,173 @@
+<img src="assets/byc-social-preview3.png" width="640" />
+
 # Bond Yield Calculator (byc)
 
 This CLI calculates **Current Yield** and **Simple Yield** for plain-vanilla bonds.
 
 ## Features
 
+- **Yield calculation**: current and simple yield
+- **CSV format**: reads and writes to CSV files
+- **Tests**: tests for maturity and yield
+- **Batch Generation**: Multiple calculations in a single run
+- **File Export**: Save calculated yields a file
+- **Simple CLI**: Easy-to-use command-line interface with sensible defaults
+- **Proper Error Handling**: Uses `anyhow` for clear, contextual error messages
 
+## Mock Data
+
+[You can use the mock data file from `./data/bonds.csv` (or .\data\bonds.csv in Windows Powershell).](data/bonds.csv)
+
+## Formulas
+
+You can find the math formulas and assumptions [in the formulas.md file.](formulas.md)
 
 ## Installation
 
+### Download Binaries
 
+You can download [the binary file from the Releases section.](https://github.com/krondorl/byc/releases)
 
-## Assumptions
+Choose a binary to download in browser or with `curl`.
 
-- Annual coupon payments
-- Face (par) value = 100
-- `coupon_rate` is annual (e.g. 5% = 0.05)
-- `clean_price` is price per 100 face value
-- No accrued interest
-- Simple Yield is an approximation (not exact YTM)
+#### Linux
 
----
+```bash
+# download
+# always check for latest version and architecture at releases section
+# 0.1.0, 0.2.0, etc.
+curl -L -o byc https://github.com/krondorl/byc/releases/download/v0.1.0/byc-linux-x64-v0.1.0
 
-## Variables
+# add running right
+chmod +x byc
 
-- \( FaceValue = 100 \)
-- \( coupon\_rate \) = annual coupon rate (decimal)
-- \( clean\_price \) = market price
-- \( n \) = years to maturity
+# execute using included mock data
+./byc ./data/bonds.csv ./data/bonds.enriched.csv
+```
 
----
+#### macOS
 
-## Annual Coupon
+```bash
+# download
+# always check for latest version at releases section
+# 0.1.0, 0.2.0, etc.
+curl -L -o byc https://github.com/krondorl/byc/releases/download/v0.1.0/byc-macos-arm64-v0.1.0
 
-Annual coupon payment:
+# add running right
+chmod +x byc
 
-$$
-C = {coupon\_rate} \times FaceValue
-$$
+# remove quarantine
+xattr -d com.apple.quarantine byc
 
-Since \( FaceValue = 100 \):
+# execute using included mock data
+./byc ./data/bonds.csv ./data/bonds.enriched.csv
+```
 
-$$
-C = {coupon\_rate} \times 100
-$$
+#### Windows (Powershell)
 
----
+```powershell
+# download
+# always check for latest version at releases section
+# 0.1.0, 0.2.0, etc.
+curl -L -o byc https://github.com/krondorl/byc/releases/download/v0.1.0/byc-windows-x64-v0.1.0.exe
 
-## Current Yield
+# run
+.\byc.exe .\data\bonds.csv .\data\bonds.enriched.csv
+```
 
-Current Yield measures annual income relative to the price paid.
+**Note:** Always check [the latest binary files from the Releases section.](https://github.com/krondorl/byc/releases)
 
-$$
-CurrentYield = \frac{C}{clean\_price}
-$$
+### From Source
 
-### Example
+```bash
+# Clone the repository
+git clone https://github.com/krondorl/byc.git
+cd byc
 
-Given:
+# Run on Windows
+cargo run -- .\data\bonds.csv .\data\bonds.enriched.csv
 
-- \( C = 5 \)
-- \( clean\_price = 95 \)
+# Run on Linux and Mac
+cargo run -- ./data/bonds.csv ./data/bonds.enriched.csv
 
-$$
-CurrentYield = \frac{5}{95} = 0.05263 = 5.263\%
-$$
+# Build release
+cargo build --release
+```
 
----
+### Prerequisites
 
-## Simple Yield (Approximate Yield to Maturity)
+- Rust 1.92.0 or higher
+- Cargo package manager
 
-Simple Yield includes:
-- Annual coupon income
-- Capital gain or loss amortized over time
+## Usage
 
-$$
-SimpleYield =
-\frac{
-C + \frac{FaceValue - clean\_price}{n}
-}{
-\frac{FaceValue + clean\_price}{2}
-}
-$$
+### Linux and macOS
 
-Where:
+```bash
+# Process csv file
+./byc ./data/bonds.csv ./data/bonds.enriched.csv
 
-- \( n \) = years to maturity
+# View help
+./byc --help
 
-### Example
+# Check version
+./byc --version
+```
 
-Given:
+### Windows (Powershell)
 
-- \( C = 5 \)
-- \( FaceValue = 100 \)
-- \( clean\_price = 95 \)
-- \( n = 5 \)
+```bash
+# Process csv file
+.\byc.exe ./data/bonds.csv ./data/bonds.enriched.csv
 
-$$
-CapitalGainPerYear = \frac{100 - 95}{5} = 1
-$$
+# View help
+.\byc.exe --help
 
-$$
-AveragePrice = \frac{100 + 95}{2} = 97.5
-$$
+# Check version
+.\byc.exe --version
+```
 
-$$
-SimpleYield = \frac{5 + 1}{97.5} = 0.0615 = 6.15\%
-$$
+## Dependencies
 
----
+```toml
+[dependencies]
+anyhow = "1.0.100"
+chrono = "0.4.42"
+clap = { version = "4.5.53", features = ["derive"] }
+csv = "1.4.0"
+serde = { version = "1.0.228", features = ["derive"] }
+```
+
+## License
+
+Please see [the license file](LICENSE.md).
+
+## Links
+
+- **Rust CLI book**: https://rust-cli.github.io/book/index.html
+- **Rust Documentation**: https://doc.rust-lang.org/
+- **Clap CLI**: https://docs.rs/clap/
+- **Anyhow**: https://docs.rs/anyhow/
+
+## History
+
+### 2026-01-03
+
+- Social preview images
+- Documentation
+
+### 2026-01-02
+
+- CSV crate
+- Working version
+
+### 2026-01-01
+
+- Initial repo
+- Module sketches
+- Crates
+- Maturity calculation
+- CLI basics
 
 ## Financial Disclaimer
 
@@ -125,9 +185,3 @@ This software is provided for educational and informational purposes only and do
 The authors and contributors assume **no responsibility or liability** for any errors, omissions, or financial losses arising from the use of this software.
 
 Use this tool at your own risk. Always consult qualified financial professionals before making investment decisions.
-
-## License
-
-Please see [the license file](LICENSE.md).
-
-## History
