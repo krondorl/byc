@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1280 640" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g>
+        <g transform="matrix(1,0,0,1,-267.895639,0)">
+            <g transform="matrix(1,0,0,1,828.925594,293.713)">
+                <g transform="matrix(173.476,0,0,173.476,273.258582,0)">
+                </g>
+                <text x="0px" y="0px" style="font-family:'SegoeUI-BoldItalic', 'Segoe UI', sans-serif;font-weight:700;font-style:italic;font-size:173.476px;fill:rgb(51,123,204);">b<tspan x="101.138px 193.128px " y="0px 0px ">yc</tspan></text>
+            </g>
+            <g transform="matrix(1,0,0,1,399.579,447.537)">
+                <g transform="matrix(115.651,0,0,115.651,1009.009799,0)">
+                </g>
+                <text x="0px" y="0px" style="font-family:'SegoeUI-SemilightItalic', 'Segoe UI', sans-serif;font-weight:350;font-style:italic;font-size:115.651px;fill:rgb(74,74,74);">bond yield calculator</text>
+            </g>
+        </g>
+        <path d="M515.821,205.596L515.821,286.189C515.821,308.429 497.765,326.485 475.525,326.485L394.931,326.485C372.691,326.485 354.635,308.429 354.635,286.189L354.635,205.596C354.635,183.356 372.691,165.3 394.931,165.3L475.525,165.3C497.765,165.3 515.821,183.356 515.821,205.596Z" style="fill:rgb(51,123,204);"/>
+        <g transform="matrix(1,0,0,1,285.915101,28.27165)">
+            <g transform="matrix(137.223253,0,0,137.223253,184.973943,266.87747)">
+            </g>
+            <text x="105.91px" y="266.877px" style="font-family:'SegoeUI-BoldItalic', 'Segoe UI', sans-serif;font-weight:700;font-style:italic;font-size:137.223px;fill:white;">$</text>
+        </g>
+    </g>
+</svg>
