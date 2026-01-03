@@ -94,6 +94,16 @@ cargo run -- ./data/bonds.csv ./data/bonds.enriched.csv
 cargo build --release
 ```
 
+### Docker
+
+```bash
+# Build the image
+docker build -t byc-app .
+
+# Run using the internal mock data
+docker run --rm byc-app ./data/bonds.csv ./data/bonds.enriched.csv
+```
+
 ### Prerequisites
 
 - Rust 1.92.0 or higher
